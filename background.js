@@ -1,21 +1,29 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(message);
-    
-    url = 'https://solved.ac/api/v3/search/problem?query=*g5..g1+-solved_by:dslr';
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request);
+
+    startTier =  request.tier.charAt(0) + '5';
+    endTier = request.tier.charAt(0) + '1';
+    nickname = request.nickname;
+    url = `https://solved.ac/api/v3/search/problem?query=*${startTier}..${endTier}+-solved_by:${nickname}`;
+    problemIndex;
+
     fetch(url)
-    .then((response) => {
-        return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
         // 해당 api response는 50개씩 잘려서 받아짐
         console.log(data);
-        console.log(data.items.length)
-        console.log(JSON.stringify(data));
+
+        // if (data.count > 50) {
+        //     pageNum = 
+        // } else {
+            problemIndex = data.items[Math.floor(Math.random() * data.items.length)].problemId;
+        // }
+        console.log(problemIndex);
+        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, problemIndex);
+        })
     })
     
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, message);
-    })
 
     /**
      * solved.ac api
