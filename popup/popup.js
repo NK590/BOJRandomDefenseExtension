@@ -2,12 +2,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('randBtn').addEventListener('click', () => {
-        request = {
-            tier : document.getElementById('tierSelect').value,
-            nickname : document.getElementById('nicknameInput').value
-        };
-        alert(request);
+        let tier = document.getElementById('tierSelect').value;
+        let nickname = document.getElementById('nicknameInput').value;
 
-        chrome.runtime.sendMessage(request);
+        chrome.runtime.sendMessage({ tier: tier, nickname: nickname }, (response) => {});
     })
 })

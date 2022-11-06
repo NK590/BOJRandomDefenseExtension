@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     endTier = request.tier.charAt(0) + '1';
     nickname = request.nickname;
     url = `https://solved.ac/api/v3/search/problem?query=*${startTier}..${endTier}+-solved_by:${nickname}`;
-    problemIndex;
+    problemIndex = 1000;
 
     fetch(url)
     .then((response) => response.json())
@@ -20,7 +20,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // }
         console.log(problemIndex);
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-            chrome.tabs.sendMessage(tabs[0].id, problemIndex);
+            chrome.tabs.sendMessage(tabs[0].id, problemIndex, (response) => {});
         })
     })
     
