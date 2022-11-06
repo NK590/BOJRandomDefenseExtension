@@ -1,0 +1,27 @@
+{
+    "manifest_version" : 2,
+    "name" : "BOJRandomDefense",
+    "version" : "0.1",
+    "description" : "Beta version",
+    "background" : {
+        "scripts" : ["background.js"],
+        "persistent" : true
+    },
+    "browser_action" : {
+        "default_title" : "Extension",
+        "default_popup" : "popup/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_start"
+        }
+    ],
+    "permissions": [
+        "background",
+        "tabs",
+        "https://*/*",
+        "http://*/*"
+    ]
+}
