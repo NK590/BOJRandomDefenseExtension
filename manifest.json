@@ -17,12 +17,7 @@
             "run_at": "document_start"
         }
     ],
-    "permissions": [
-        "background",
-        "tabs",
-        "https://*/*",
-        "http://*/*"
-    ],
+    "permissions": [],
     "icons": {
         "128": "letter-b-icon.png"
     }
