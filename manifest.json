@@ -22,5 +22,8 @@
         "tabs",
         "https://*/*",
         "http://*/*"
-    ]
+    ],
+    "icons": {
+        "128": "letter-b-icon.png"
+    }
 }
