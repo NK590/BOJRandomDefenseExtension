@@ -1,7 +1,7 @@
 {
     "manifest_version" : 3,
     "name" : "BOJRandomDefense",
-    "version" : "1.0",
+    "version" : "2.0",
     "description" : "Published version",
     "background" : {
         "service_worker" : "background.js"
