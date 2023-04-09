@@ -60,9 +60,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         })
     } else {
         let programmersLevel = request.programmersLevel;
-
         let url = `https://school.programmers.co.kr/api/v1/school/challenges/?levels[]=${programmersLevel}&statuses[]=unsolved`;
-        let problemIndex;
 
         fetch(url)
         .then((response) => response.json())
